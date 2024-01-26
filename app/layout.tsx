@@ -1,8 +1,6 @@
 import type { Metadata } from "next";
-import localFont from "next/font/local";
 import "./globals.scss";
 import Loader from "./components/loader/loader";
-import Cursor from "./components/ui/cursor";
 
 export const metadata: Metadata = {
   title: "Sean Relampagos | Software Engineer",
@@ -46,37 +44,41 @@ export const metadata: Metadata = {
     title: "Sean Relampagos | Software Engineer",
     description:
       "Sean Relampagos stands out as a dynamic full stack software engineer, renowned for his expert handling of both frontend and backend development, along with operations management. His approach seamlessly blends innovation with practicality, making him a valuable asset in the tech industry.",
+    images: [
+      {
+        url: "https://seangjr.tech/assets/og.webp",
+        width: 1200,
+        height: 630,
+        alt: "Sean Relampagos Portfolio Website",
+      },
+      {
+        url: "https://seangjr.tech/assets/og2.webp",
+        width: 1200,
+        height: 630,
+        alt: "Sean Relampagos Portfolio Website",
+      },
+    ],
   },
   twitter: {
     site: "@seangjr",
     creator: "@seangjr",
+    card: "summary_large_image",
+    images: [
+      {
+        url: "https://seangjr.tech/assets/og.webp",
+        width: 1200,
+        height: 630,
+        alt: "Sean Relampagos Portfolio Website",
+      },
+      {
+        url: "https://seangjr.tech/assets/og2.webp",
+        width: 1200,
+        height: 630,
+        alt: "Sean Relampagos Portfolio Website",
+      },
+    ],
   },
 };
-
-const neueMontreal = localFont({
-  src: [
-    {
-      path: "components/font/nm/NeueMontreal-Light.otf",
-      weight: "300",
-      style: "normal",
-    },
-    {
-      path: "components/font/nm/NeueMontreal-Regular.otf",
-      weight: "400",
-      style: "normal",
-    },
-    {
-      path: "components/font/nm/NeueMontreal-Medium.otf",
-      weight: "500",
-      style: "normal",
-    },
-    {
-      path: "components/font/nm/NeueMontreal-Bold.otf",
-      weight: "700",
-      style: "normal",
-    },
-  ],
-});
 
 export default function RootLayout({
   children,
