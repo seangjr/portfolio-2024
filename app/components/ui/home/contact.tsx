@@ -70,7 +70,9 @@ export default function Contact() {
             // eslint-disable-next-line react/no-unknown-property
             className="mt-10 font-grotesk"
             method="POST"
-            onSubmit={() => alert("later set up lol i laze. email me tho :)")}
+            onSubmit={() =>
+              alert("haven't set up nodemailer. send me an email!")
+            }
           >
             <input type="hidden" name="form-name" value="contact" />
             <div className="grid grid-cols-1 gap-x-6 gap-y-12 sm:grid-cols-2">
