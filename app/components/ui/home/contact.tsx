@@ -69,7 +69,6 @@ export default function Contact() {
             autoComplete="off"
             // eslint-disable-next-line react/no-unknown-property
             className="mt-10 font-grotesk"
-            method="POST"
             onSubmit={() =>
               alert("haven't set up nodemailer. send me an email!")
             }
