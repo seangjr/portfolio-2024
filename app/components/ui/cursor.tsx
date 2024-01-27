@@ -7,14 +7,41 @@ const Cursor = () => {
 
   useEffect(() => {
     const images = document.querySelectorAll(".img");
+    const links = document.querySelectorAll("a, button");
 
     const tl = gsap.timeline({ paused: true });
+    const tl2 = gsap.timeline({ paused: true }); // for links
 
     tl.to(curs.current, {
       height: "112px",
       width: "112px",
+      opacity: 1,
       ease: "expo.inout",
     }).to(svg.current, { opacity: 1, width: "96px", height: "96px" }, 0);
+
+    tl2.to(curs.current, {
+      height: "60px",
+      width: "60px",
+      opacity: 0.6,
+      ease: "expo.inout",
+    });
+
+    links.forEach((link) => {
+      link.addEventListener("mouseenter", function () {
+        tl2.play();
+      });
+
+      link.addEventListener("mouseleave", function () {
+        tl2.reverse();
+        tl2.eventCallback("onReverseComplete", function () {
+          gsap.set(curs.current, {
+            height: "12px",
+            width: "12px",
+            opacity: 1,
+          }); // Hide the SVG element
+        });
+      });
+    });
 
     images.forEach((img) => {
       img.addEventListener("mouseenter", function () {

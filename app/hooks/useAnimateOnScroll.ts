@@ -18,8 +18,8 @@ const useAnimateOnScroll = (
       headings.forEach((heading) => {
         const trigger = ScrollTrigger.create({
           trigger: sectionHeading,
-          start: "top 550px",
-          end: "bottom 550px",
+          start: "top 375px",
+          end: "bottom 300px",
           animation: gsap.to(heading, {
             opacity: 1,
             y: 0,

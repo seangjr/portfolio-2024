@@ -21,7 +21,9 @@ export default function ServiceUi({
     ScrollTrigger.create({
       trigger: serviceUi.current,
       // markers: true,
-      start: "150px bottom",
+      start: "top 200px",
+      end: "bottom 100px",
+      scrub: true,
       animation: gsap
         .timeline()
         .to(
@@ -48,6 +50,14 @@ export default function ServiceUi({
       toggleActions: "play none none none",
     });
     ScrollTrigger.refresh();
+
+    // repeat animation on scroll
+    // ScrollTrigger.create({
+    //   trigger: serviceUi.current,
+    //   start: "top bottom",
+    //   end: "bottom top",
+    //   scrub: true,
+    //   animation: gsap
   }, [serviceUi]);
 
   return (
@@ -72,13 +82,13 @@ export default function ServiceUi({
         </div>
         <div
           ref={line}
-          className="h-1 w-0 bg-accent-100 opacity-50 md:hidden"
+          className="h-1 w-0 bg-accent-400 opacity-50 md:hidden"
         ></div>
       </div>
 
       <div
         ref={services}
-        className=" select-none leading-[2.3rem] text-secondary-500 md:leading-[2.5rem] lg:leading-[3.4rem]  translate-y-10 opacity-0"
+        className=" select-none leading-[2.3rem] text-accent-100 md:leading-[2.5rem] lg:leading-[3.4rem]  translate-y-10 opacity-0"
       >
         {items.map((item, index) => {
           return (

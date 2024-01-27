@@ -27,22 +27,27 @@ const Navbar = ({
   });
 
   useEffect(() => {
-    sectionRefs.forEach((section) => {
-      ScrollTrigger.create({
+    // Assuming sectionRefs is an array of elements
+    const triggers = sectionRefs.map((section) => {
+      return ScrollTrigger.create({
         trigger: section,
         start: "top 375px",
         end: "bottom 300px",
-        // markers: true,
         animation: gsap
           .timeline()
           .to(navbar.current, { color: "#DDDDD5" })
           .to(cta.current, { backgroundColor: "#D1D1C7", color: "#0E0E0C" }, 0)
           .to(".bg-secondary-100", { backgroundColor: "#0E0E0C" }, 0),
-
         toggleActions: "restart reverse restart reverse",
+        // markers: true, // Uncomment for debugging
       });
     });
-  });
+
+    // Clean up
+    return () => {
+      triggers.forEach((trigger) => trigger.kill());
+    };
+  }, []);
 
   return (
     <header

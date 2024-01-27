@@ -57,7 +57,7 @@ const About = () => {
             </h3>
             <p
               ref={body}
-              className=" translate-y-10 text-body-1 2xl:text-4xl opacity-0"
+              className="translate-y-10 text-body-1 2xl:text-4xl opacity-0"
             >
               As a full-stack developer based in the vibrant heart of Asia
               Pacific, I blend performance-driven coding with innovative design
@@ -68,7 +68,8 @@ const About = () => {
               Two, a leading software consultancy in Kuala Lumpur, Malaysia.
               <br></br>
               <br></br>
-              When I am not developing or designing, I am probably: <br></br>
+              When I am not developing or designing, I am probably:
+              <br></br>
               <br></br>
               <ul className="list-disc list-inside">
                 <li>📖 Reading about the latest tech</li>

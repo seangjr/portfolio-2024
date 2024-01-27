@@ -94,6 +94,13 @@ const Loader = () => {
       duration: 1.75,
       delay: 2.7,
     });
+
+    gsap.to(".loader-content", {
+      zIndex: -1,
+      ease: "power4.inOut",
+      duration: 0.5,
+      delay: 5,
+    });
   }, []);
 
   return (

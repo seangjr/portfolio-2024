@@ -1,4 +1,5 @@
 import { gsap } from "gsap";
+import anime from "animejs/lib/anime.es.js";
 import { useRef, useEffect } from "react";
 
 const Hero = () => {
@@ -7,10 +8,11 @@ const Hero = () => {
   const scroll = useRef<HTMLDivElement | null>(null);
 
   useEffect(() => {
-    gsap.from(scrollLine.current, {
-      translateX: -40,
-      duration: 1.5,
-      ease: "power4.inOut",
+    anime.timeline({ loop: true }).add({
+      targets: scrollLine.current,
+      width: ["0%", "100%"],
+      easing: "easeOutExpo",
+      duration: 500,
     });
 
     gsap.to(titles.current, {
@@ -21,10 +23,11 @@ const Hero = () => {
       delay: 3,
     });
 
-    gsap.from(scroll.current, {
-      opacity: 0,
+    gsap.to(scroll.current, {
+      opacity: 1,
       duration: 1.5,
       ease: "power4.inOut",
+      delay: 3.5,
     });
   }, []);
 

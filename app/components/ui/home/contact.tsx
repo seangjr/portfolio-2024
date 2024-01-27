@@ -2,14 +2,38 @@ import { Icon } from "@iconify/react";
 import { useEffect, useState, useRef } from "react";
 import { ScrollTrigger } from "gsap/all";
 import { gsap } from "gsap";
+import { toast } from "sonner";
 
 export default function Contact() {
   // gmt +8
   const [time, setTime] = useState(new Date().toLocaleTimeString());
+  const [data, setData] = useState({
+    name: "",
+    email: "",
+    message: "",
+  });
 
   const heading = useRef(null);
   const body = useRef(null);
   const contactSection = useRef(null);
+
+  async function sendEmail() {
+    try {
+      const response = await fetch("/api/send", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(data),
+      });
+
+      await response.json();
+      setData({ name: "", email: "", message: "" });
+      return toast.success("Message sent!");
+    } catch (error) {
+      return toast.error("Something went wrong!");
+    }
+  }
 
   useEffect(() => {
     ScrollTrigger.create({
@@ -67,11 +91,11 @@ export default function Contact() {
           <form
             name="contact"
             autoComplete="off"
-            // eslint-disable-next-line react/no-unknown-property
             className="mt-10 font-grotesk"
-            onSubmit={() =>
-              alert("haven't set up nodemailer. send me an email!")
-            }
+            action={sendEmail}
+            onSubmit={(e) => {
+              e.currentTarget.reset();
+            }}
           >
             <input type="hidden" name="form-name" value="contact" />
             <div className="grid grid-cols-1 gap-x-6 gap-y-12 sm:grid-cols-2">
@@ -79,13 +103,15 @@ export default function Contact() {
                 <input
                   required
                   type="text"
-                  id="name"
-                  name="name"
+                  id="uname"
+                  name="uname"
                   className="peer block w-full appearance-none border-0 border-b border-accent-100 bg-transparent px-0 py-2.5 focus:outline-none focus:ring-0"
+                  value={data.name}
+                  onChange={(e) => setData({ ...data, name: e.target.value })}
                   placeholder=" "
                 />
                 <label
-                  htmlFor="name"
+                  htmlFor="uname"
                   className="absolute top-3 -z-10 origin-[0] -translate-y-6 scale-75 transform text-body-3 2xl:text-body-2 text-secondary-600 duration-300 peer-placeholder-shown:translate-y-0 peer-placeholder-shown:scale-100 peer-focus:left-0 peer-focus:-translate-y-6 peer-focus:scale-75"
                 >
                   Your name
@@ -94,10 +120,12 @@ export default function Contact() {
               <div className="relative z-0">
                 <input
                   required
-                  type="text"
+                  type="email"
                   name="email"
                   id="email"
                   className="peer block w-full appearance-none border-0 border-b border-accent-100 bg-transparent px-0 py-2.5 focus:outline-none focus:ring-0"
+                  value={data.email}
+                  onChange={(e) => setData({ ...data, email: e.target.value })}
                   placeholder=" "
                 />
                 <label
@@ -114,6 +142,10 @@ export default function Contact() {
                   name="message"
                   rows={5}
                   className="peer block w-full appearance-none border-0 border-b border-accent-100 bg-transparent px-0 py-2.5 focus:outline-none focus:ring-0"
+                  value={data.message}
+                  onChange={(e) =>
+                    setData({ ...data, message: e.target.value })
+                  }
                   placeholder=" "
                 ></textarea>
                 <label
