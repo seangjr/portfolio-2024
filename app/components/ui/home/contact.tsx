@@ -216,7 +216,7 @@ export default function Contact() {
                 </div>
               </a>
               <a
-                href="https://www.linkedin.com/in/sean-relampagos/"
+                href="https://www.linkedin.com/in/seangjr/"
                 className="group group flex w-fit items-center space-x-2"
                 target="_blank"
                 rel="noreferrer"

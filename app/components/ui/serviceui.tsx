@@ -21,8 +21,7 @@ export default function ServiceUi({
     ScrollTrigger.create({
       trigger: serviceUi.current,
       // markers: true,
-      start: "top 200px",
-      end: "bottom 100px",
+      start: "150px bottom",
       scrub: true,
       animation: gsap
         .timeline()
