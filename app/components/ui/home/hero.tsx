@@ -3,6 +3,7 @@ import anime from "animejs/lib/anime.es.js";
 import { useRef, useEffect } from "react";
 
 const Hero = () => {
+  // eslint-disable-next-line
   const titles = useRef<Array<HTMLHeadingElement | null>>([]);
   const scrollLine = useRef<HTMLDivElement | null>(null);
   const scroll = useRef<HTMLDivElement | null>(null);
