@@ -3,7 +3,6 @@ import anime from "animejs/lib/anime.es.js";
 import { useRef, useEffect } from "react";
 
 const Hero = () => {
-  // eslint-disable-next-line
   const titles = useRef<Array<HTMLHeadingElement | null>>([]);
   const scrollLine = useRef<HTMLDivElement | null>(null);
   const scroll = useRef<HTMLDivElement | null>(null);
@@ -42,14 +41,18 @@ const Hero = () => {
         <div className="title">
           {/* Learn more about useRef */}
           <h1
-            ref={(el) => (titles.current[0] = el)}
+            ref={(el) => {
+              if (el) titles.current[0] = el;
+            }}
             className="translate-y-96 overflow-visible"
           >
             Hey👋, I&apos;m
           </h1>
         </div>
         <div className="title">
-          <h1 ref={(el) => (titles.current[1] = el)} className="translate-y-96">
+          <h1 ref={(el) => {
+            if (el) titles.current[1] = el;
+          }} className="translate-y-96">
             sean
           </h1>
         </div>
