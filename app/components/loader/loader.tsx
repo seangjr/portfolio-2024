@@ -14,13 +14,13 @@ const Loader = () => {
     const updateCounter = () => {
       if (counter < 100) {
         let increment = Math.floor(Math.random() * 10) + 1;
-        counter = Math.min(counter + increment, 100);
+        counter += increment;
         // handle null
         if (counterElement.current) {
           counterElement.current.innerText = counter.toString();
         }
 
-        let delay = Math.floor(Math.random() * 100) + 25;
+        let delay = Math.floor(Math.random() * 100) + 20;
         setTimeout(updateCounter, delay);
       }
     };
@@ -28,7 +28,7 @@ const Loader = () => {
     updateCounter();
   }
 
-  useEffect(() => {
+  function loading() {
     startLoader();
     gsap.to(".count", {
       opacity: 0,
@@ -101,7 +101,11 @@ const Loader = () => {
       duration: 0.5,
       delay: 5,
     });
-  }, []);
+  }
+
+  useEffect(() => {
+    loading();
+  }, [loading]);
 
   return (
     <div className="loader-wrapper">

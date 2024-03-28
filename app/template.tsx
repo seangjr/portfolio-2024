@@ -1,35 +1,42 @@
 "use client";
-import { useRef } from "react";
+import { useEffect } from "react";
 import { ReactLenis } from "@studio-freight/react-lenis";
-import Navbar from "./components/ui/navbar";
 import Cursor from "./components/ui/cursor";
 import useAnimateOnScroll from "./hooks/useAnimateOnScroll";
-import Hero from "./components/ui/home/hero";
-import Role from "./components/ui/home/role";
-import Contact from "./components/ui/home/contact";
 import Footer from "./components/ui/footer";
-import Works from "./components/ui/home/works";
 import { Toaster } from "sonner";
+import { animatePageIn } from "./utils/animations";
 
 export default function Template({ children }: { children: React.ReactNode }) {
-  const sectionRefs = useRef<Array<HTMLDivElement | null>>([]);
-
   useAnimateOnScroll(".section-heading", ".heading");
+
+  useEffect(() => {
+    animatePageIn()
+  }, [])
 
   return (
     <>
       <Toaster position="top-center" richColors />
+      <div
+        id="banner-1"
+        className="min-h-screen bg-neutral-950 z-[150] fixed top-0 left-0 w-1/4"
+      />
+      <div
+        id="banner-2"
+        className="min-h-screen bg-neutral-950 z-[150] fixed top-0 left-1/4 w-1/4"
+      />
+      <div
+        id="banner-3"
+        className="min-h-screen bg-neutral-950 z-[150] fixed top-0 left-2/4 w-1/4"
+      />
+      <div
+        id="banner-4"
+        className="min-h-screen bg-neutral-950 z-[150] fixed top-0 left-3/4 w-1/4"
+      />
       <ReactLenis root>
         <div className="bg-secondary-100">
           <Cursor />
-          <Navbar sectionRefs={sectionRefs.current} />
-          <Hero />
-          <main className="px-5 md:px-10 xl:px-20 2xl:px-28">
-            <Role forwardedRef={(el) => (sectionRefs.current[0] = el)} />
-            {children}
-            <Works forwardedRef={(el) => (sectionRefs.current[1] = el)} />
-            <Contact />
-          </main>
+          {children}
           <Footer />
         </div>
       </ReactLenis>

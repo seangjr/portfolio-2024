@@ -1,20 +1,13 @@
 import { gsap } from "gsap";
-import anime from "animejs/lib/anime.es.js";
 import { useRef, useEffect } from "react";
 
 const Hero = () => {
+  const isFirstrender = useRef(true);
   const titles = useRef<Array<HTMLHeadingElement | null>>([]);
-  const scrollLine = useRef<HTMLDivElement | null>(null);
+  const scrollLine = useRef<HTMLSpanElement | null>(null);
   const scroll = useRef<HTMLDivElement | null>(null);
 
-  useEffect(() => {
-    anime.timeline({ loop: true }).add({
-      targets: scrollLine.current,
-      width: ["0%", "100%"],
-      easing: "easeOutExpo",
-      duration: 500,
-    });
-
+  function loader() {
     gsap.to(titles.current, {
       y: 0,
       duration: 1.5,
@@ -22,14 +15,29 @@ const Hero = () => {
       ease: "power4.inOut",
       delay: 3,
     });
+  }
 
-    gsap.to(scroll.current, {
-      opacity: 1,
-      duration: 1.5,
-      ease: "power4.inOut",
-      delay: 3.5,
-    });
+  useEffect(() => {
+    if (isFirstrender.current) {
+      gsap.to(titles.current, {
+        y: 0,
+        duration: 1.5,
+        stagger: 0.1,
+        ease: "power4.inOut",
+        delay: 3,
+      });
+      isFirstrender.current = false;
+    }
+    else {
+      gsap.to(titles.current, {
+        y: 0,
+        duration: 1.5,
+        stagger: 0.1,
+        ease: "power4.inOut",
+      });
+    }
   }, []);
+
 
   return (
     <section
@@ -39,7 +47,6 @@ const Hero = () => {
     >
       <div className="z-10 flex flex-col w-full items-center text-title 2xl:text-[8vw] font-bold  uppercase text-accent-300">
         <div className="title">
-          {/* Learn more about useRef */}
           <h1
             ref={(el) => {
               if (el) titles.current[0] = el;

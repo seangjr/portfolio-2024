@@ -22,7 +22,6 @@ export default function ServiceUi({
       trigger: serviceUi.current,
       // markers: true,
       start: "150px bottom",
-      scrub: true,
       animation: gsap
         .timeline()
         .to(
