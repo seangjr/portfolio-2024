@@ -7,6 +7,7 @@ import "./Menu.css";
 
 import { gsap } from "gsap";
 import { useGSAP } from "@gsap/react";
+import TransitionLink from "../../navigation/TransitionLink";
 
 const menuLinks = [
   { path: "/#", label: "Home" },
@@ -62,9 +63,9 @@ export default function Menu({ isMenuOpen, toggleMenu }:
         {/* menu-overlay-bar */}
         <div className="menu-overlay-bar">
           <div className="menu-logo">
-            <Link href="/"
-              className="z-50 font-general text-heading-3 font-black text-secondary-400"
-            >seangjr</Link>
+            <TransitionLink href="/"
+              props={{ className: "z-50 font-general text-heading-3 font-black text-secondary-400" }}
+            >seangjr</TransitionLink>
           </div>
           <button className="button group relative cursor-none font-grotesk text-body-3 bg-secondary-400 text-accent-400" onClick={toggleMenu}>
             Close
@@ -80,9 +81,14 @@ export default function Menu({ isMenuOpen, toggleMenu }:
             {menuLinks.map((link, index) => (
               <div key={index} className="menu-link-item">
                 <div className="menu-link-item-holder" onClick={toggleMenu}>
-                  <Link className="menu-link text-secondary-400" href={link.path}>
+                  {/* <Link className="menu-link text-secondary-400" href={link.path}> */}
+                  {/*   {link.label} */}
+                  {/* </Link> */}
+                  <TransitionLink href={link.path}
+                    props={{ className: "menu-link text-secondary-400" }}
+                  >
                     {link.label}
-                  </Link>
+                  </TransitionLink>
                 </div>
               </div>
             ))}
