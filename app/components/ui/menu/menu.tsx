@@ -8,19 +8,21 @@ import "./Menu.css";
 import { gsap } from "gsap";
 import { useGSAP } from "@gsap/react";
 import TransitionLink from "../../navigation/TransitionLink";
+import { useLenis } from "@studio-freight/react-lenis";
 
-const menuLinks = [
-  { path: "/#", label: "Home" },
-  { path: "/#about", label: "About" },
-  { path: "/#services", label: "Services" },
-  { path: "/#projects", label: "Projects" },
-  { path: "/gallery", label: "Gallery" },
-  { path: "#contact", label: "Contact" },
-];
 
 export default function Menu({ isMenuOpen, toggleMenu }:
   { isMenuOpen: boolean; toggleMenu: () => void }) {
   const container = useRef<HTMLDivElement | null>(null);
+  const lenis = useLenis();
+  const menuLinks = [
+    { path: "/#", label: "Home", onClick: () => lenis.scrollTo("#hero") },
+    { path: "/#about", label: "About", onClick: () => lenis.scrollTo("#about") },
+    { path: "/#services", label: "Services", onClick: () => lenis.scrollTo("#services") },
+    { path: "/#projects", label: "Projects", onClick: () => lenis.scrollTo("#projects") },
+    { path: "/gallery", label: "Gallery" },
+    { path: "#contact", label: "Contact", onClick: () => lenis.scrollTo("#contact") }
+  ];
 
   const tl = useRef();
 
@@ -84,8 +86,9 @@ export default function Menu({ isMenuOpen, toggleMenu }:
                   {/* <Link className="menu-link text-secondary-400" href={link.path}> */}
                   {/*   {link.label} */}
                   {/* </Link> */}
-                  <TransitionLink href={link.path}
-                    props={{ className: "menu-link text-secondary-400" }}
+                  <TransitionLink
+                    href={link.path}
+                    props={{ className: "menu-link text-secondary-400 font-grotesk", onClick: link.onClick }}
                   >
                     {link.label}
                   </TransitionLink>

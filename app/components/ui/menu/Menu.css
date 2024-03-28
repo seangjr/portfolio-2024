@@ -71,7 +71,7 @@
   position: relative;
 }
 
-.menu-link-item-holder a {
+.menu-link-item-holder button {
   font-size: 80px;
   font-weight: 400;
   letter-spacing: -0.02em;
