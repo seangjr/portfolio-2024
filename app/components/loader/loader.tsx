@@ -14,7 +14,7 @@ const Loader = () => {
     const updateCounter = () => {
       if (counter < 100) {
         let increment = Math.floor(Math.random() * 10) + 1;
-        counter += increment;
+        counter = Math.min(counter + increment, 100);
         // handle null
         if (counterElement.current) {
           counterElement.current.innerText = counter.toString();
